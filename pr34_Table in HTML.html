@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Table in HTML</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            width: 70%;
+        }
+        td{
+            border: 1px solid green;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1 align="center">Table in HTML</h1>
+<table>
+    <tr>
+        <td rowspan="2">A</td>
+        <td>B</td>
+        <td rowspan="3">D</td>
+        <td colspan="2">E</td>
+        <td>F</td>
+    </tr>
+
+    <tr>
+        <td>C</td>
+        <td rowspan="2">G</td>
+        <td rowspan="2">H</td>
+        <td rowspan="2">I</td>
+    </tr>
+
+    <tr>
+        <td colspan="2">J</td>
+    </tr>
+
+    <tr>
+        <td colspan="3">K</td>
+        <td>L</td>
+        <td colspan="2">M</td>
+    </tr>
+
+</table>
+
+</body>
+</html>
