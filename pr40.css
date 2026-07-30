@@ -1,0 +1,13 @@
+body{
+
+    background-image: url(https://www.shutterstock.com/image-vector/tall-lush-trees-make-this-600nw-2112333380.jpg);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+}
+
+pre{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: x-large;
+    
+}
