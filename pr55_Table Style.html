@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Style</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+        
+        th, td {
+            box-shadow: 1px 1px 5px grey;
+            border-radius: 25px;
+            padding: 7px;
+            margin: 5px;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color:maroon;
+        }
+         tr:nth-child(even) {
+            background-color:lightblue;
+        }
+         tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <table>
+       <tr>
+        <th>id</th>
+       <th>name</th>
+       <th>age</th>
+    
+    </tr>
+       <tr>
+        <td>01</td>
+        <td>Darshal</td>
+        <td>19</td>
+       </tr>
+       <tr>
+        <td>02</td>
+        <td>Sujal</td>
+        <td>20</td>
+       </tr>
+       <tr>
+        <td>03</td>
+        <td>Rohit</td>
+        <td>21</td>
+       </tr>
+       <tr>
+        <td>04</td>
+        <td>Mohit</td>
+        <td>21</td>
+       </tr>
+    </table>
+</body>
+</html>
