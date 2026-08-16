@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>styling table using internal CSS</title>
+    <style>
+        table {
+            border: 1px solid white;
+            border-collapse: collapse;
+            width: 100%;
+            border-bottom: 2px solid rgb(25, 207, 146);
+           
+        }
+        th, td {
+          
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color:rgb(25, 207, 146);
+            color: white;
+        }
+        tr:nth-child(odd) {
+            color:rgb(24, 188, 133) ;
+            background-color: rgb(239, 238, 238);
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Points</th>
+            <th>Team</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>100</td>
+            <td>Team A</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Jane Smith</td>
+            <td>95</td>
+            <td>Team B</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Bob Johnson</td>
+            <td>90</td>
+            <td>Team C</td>
+        </tr>
+    </table>
+</body>
+</html>
