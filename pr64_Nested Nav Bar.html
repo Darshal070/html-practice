@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nested Nav Bar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: rgb(76, 35, 114);
+      color: white;
+      padding: 15px 10px;
+    }
+
+    ul {
+      list-style: none;
+      text-align: center;
+      padding: 5px;
+    }
+
+    li {
+      display: inline-block;
+      border: 1px solid white;
+      position: relative;
+    }
+
+    li:hover {
+      background-color: rgb(130, 5, 248);
+    }
+
+    a {
+      margin: 5px;
+      text-decoration: none;
+      color: white;
+      display: block;
+      padding: 5px 10px;
+    }
+
+    .dropdown {
+      background-color: black;
+      color: white;
+      display: none;
+      position: absolute;
+      top: 100%; /* Below parent */
+      left: 0;
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      border-bottom: 1px solid white;
+    }
+
+    .btn:hover .dropdown {
+      display: block;
+    }
+
+    a:hover{
+      background-color: rgb(197, 147, 243);
+      border-radius: 10px 7px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href=""><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href=""><i class="fa-solid fa-user"></i> About</a></li>
+      <li class="btn">
+        <a href=""><i class="fa-solid fa-gears"></i> Services</a>
+        <div class="dropdown">
+          <a href=""><i class="fa-solid fa-file"></i> Java Full Stack</a>
+          <a href=""><i class="fa-solid fa-file"></i> Python Full Stack</a>
+          <a href=""><i class="fa-solid fa-file"></i> Data Science</a>
+        </div>
+      </li>
+      <li><a href=""><i class="fa-solid fa-envelope"></i> Contact</a></li>
+    </ul>
+  </nav>
+</body>
+</html>
