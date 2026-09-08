@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Navbar</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        body{
+            display:flex;
+            justify-content:center;
+            padding-top:40px;
+        }
+
+        nav{
+            width:900px;
+            height:70px;
+            background:#ff2d55;
+            border-radius:0 35px 0 35px;
+        }
+
+        ul{
+            list-style:none;
+            display:flex;
+            align-items:center;
+        }
+
+        li{
+            width:180px;
+            height:70px;
+            line-height:70px;
+            text-align:center;
+        }
+
+        a{
+            display:block;
+            text-decoration:none;
+            color:white;
+            font-size:28px;
+            font-weight:bold;
+        }
+
+        .dropdown{
+            display:none;
+            position:absolute;
+            width:180px;
+        }
+
+        .dropdown li{
+            height:60px;
+            line-height:60px;
+        }
+
+        li:hover .dropdown {
+            background-color: rgb(249, 83, 83);
+            display:block;
+            border-radius: 20px;
+        }
+        
+      
+
+    </style>
+</head>
+<body>
+ <nav>
+     <ul>
+         <li><a href="">Home</a></li>
+         <li><a href="">About</a></li>
+         <li><a href="">Contact</a></li>
+         <li>
+          <a href="">Support</a>
+              <ul class="dropdown">
+                <li class="c"><a href="">HTML</a></li>
+                   <li class="c"><a href="">CSS</a></li>
+                   <li class="c"><a href="">Javascript</a></li>
+             </ul>
+         </li>
+     </ul>
+ </nav>
+</body>
+</html>
