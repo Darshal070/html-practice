@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: darkcyan;
+    background-size: cover;
+}
+
+.card{
+    width: 300px;
+    height: 100px;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: rgba(175, 6, 6, 0.1);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 50px 32px rbga(0,0,0,0.3);
+    color: white;
+}
