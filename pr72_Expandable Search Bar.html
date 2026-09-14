@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expandable Search Bar</title>
+  <style>
+
+    :root {
+      --pill-w: 50px;              
+      --pill-h: 40px;              
+      --pill-expanded-w: 250px;    
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, rgb(114, 114, 253), #ee0979);
+      font-family: Arial, sans-serif;
+    }
+
+    .search-expand {
+      position: relative;
+      width: var(--pill-w);
+      height: var(--pill-h);
+      border-radius: var(--pill-h);
+      background:rgb(176, 97, 250);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+      overflow: hidden;
+    }
+
+    .search-expand .icon::before {
+      content: "🔍";
+      font-size: 18px;
+    }
+
+    .search-expand input {
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 16px;
+      margin-left: 8px;
+      display: none;
+    }
+
+    .search-expand:hover,
+    .search-expand:focus-within {
+      width: var(--pill-expanded-w);
+    }
+
+    .search-expand:hover input,
+    .search-expand:focus-within input {
+      display: block;
+    }
+
+  </style>
+
+</head>
+<body>
+  <div class="search-expand">
+    <span class="icon"></span>
+    <input type="text" placeholder="type something...">
+  </div>
+</body>
+</html>
