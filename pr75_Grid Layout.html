@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Layout</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            background:linear-gradient(to right, rgb(101, 240, 240), rgb(122, 122, 244)) ;
+        }
+
+        div{
+            padding: 15px;
+        }
+
+        *{
+            color: white;
+        }
+
+        #h3{
+            text-align: center;
+        }
+
+        .parent{
+            display: grid;
+            grid-template-columns: repeat(4,300px);
+            grid-template-rows:150px 180px 180px;
+            width: max-content;
+            justify-content: center;
+        }
+
+        #i1{
+             background: rgba(26,9,9);
+        }
+
+        #i2{
+            background-color: rgb(14, 186, 243);
+        }
+
+        #i3{
+            background-color: aqua;
+        }
+
+        #i4{
+            background-color: black;
+        }
+
+        #i5{
+            background-color:rgba(18, 2, 73, 0.607);
+            grid-row: 2/4;
+        }
+
+        #i6{
+            background-color: black;
+            grid-column: 2/4;
+        }
+
+        #i7{
+            background-color:rgba(18, 2, 73, 0.607);
+            grid-row: 2/4;
+            grid-column: 4;
+        }
+
+        #i8{
+            background-color: rgb(14, 186, 243);
+        }
+
+        #i9{
+            background-color: aqua;
+        }
+
+        .c1{
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="c1" id="i1">
+            <h3>HEADING </h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In totam doloribus tempora eveniet. Quidem facere ipsam cupiditate incidunt. Corporis, obcaecati!</p>
+        </div>
+        <div class="c1" id="i2">
+            <h3>HEADING</h3>
+        </div>
+        <div class="c1" id="i3">
+            <h3>HEADING</h3>
+        </div>
+        <div class="c1" id="i4">
+            <h3>HEADING</h3>
+        </div>
+        <div class="c1" id="i5">
+            <h3>HEADING </h3>
+            <p>Lorem ipsum dolor, sit amet consectetur</p>
+        </div>
+        <div class="c1" id="i6">
+            <h3>HEADING </h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In totam doloribus tempora eveniet. Quidem facere ipsam cupiditate incidunt. Corporis, obcaecati!</p>
+        </div>
+        <div class="c1" id="i7">
+            <h3>HEADING </h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In totam doloribus tempora eveniet. Quidem facere ipsam cupiditate incidunt. Corporis, obcaecati!</p>
+        </div>
+        <div class="c1" id="i8">
+            <h3>HEADING </h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In totam doloribus tempora eveniet. Quidem facere ipsam cupiditate incidunt. Corporis, obcaecati!</p>
+        </div>
+        <div class="c1" id="i9">
+            <h3>HEADING </h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In totam doloribus tempora eveniet. Quidem facere ipsam cupiditate incidunt. Corporis, obcaecati!</p>
+        </div>
+    </div>
+</body>
+</html>
