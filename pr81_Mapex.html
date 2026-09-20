@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors Example</title>
+</head>
+<body>
+    <script>
+
+        let colors = ["red", "blue", "green", "yellow", "black", "white"];
+
+        let newColors = colors.map((el, idx, array) => {
+            return el.toUpperCase();
+        });
+
+        console.log(newColors);
+
+        let c2 = colors.filter((el, idx, array) => {
+            return el.length > 4;
+        });
+
+        console.log(c2);
+        
+    </script>
+</body>
+</html>
