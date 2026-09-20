@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Properties</title>
+
+    <script>
+  
+      let arr = new Array (2,3,4,6,7);
+      let arr2 = new Array(1,2)
+      arr.unshift(12)
+      arr.push(0)
+      arr.shift()
+      let result = arr.concat(arr2);
+
+      let ar = arr.map(
+        (el,idx,array)=>{
+         return el*2
+        }
+      )
+
+      let ar2 = arr.filter(
+      (el,idx,array)=>{
+       return el%2 == 0
+      }
+    )
+
+
+    console.log(arr);
+    console.log(arr);
+    console.log(result);
+    console.log(ar);
+    console.log(ar2);
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
