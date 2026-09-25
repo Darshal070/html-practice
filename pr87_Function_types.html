@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types of function</title>
+</head>
+<body>
+
+    <script>
+        //Name function
+        function msg()
+        {
+            console.log("This is name function")
+        }
+        msg();
+
+        //Anonymous function 
+        let a=function()
+        {
+            console.log("This is anonymous function")
+        }
+        a();
+
+        //Arrow function 
+        let sq=(n)=>{
+           let square=n*n;
+            console.log("square:"+square)
+        }
+        sq(4);
+
+        //Immediately Invoke Function Expression(IIEF)
+        (
+            function b(){
+                console.log("IIEF")
+            }
+        )();
+
+        //call back
+        function hello(){
+            console.log("This is call back function")
+        }
+        function message(h1){
+            h1();
+        }
+        message(hello);
+    </script>
+
+</body>
+</html>
