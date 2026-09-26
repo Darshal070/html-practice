@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculating using function</title>
+  </head>
+  <body>
+    <script>
+        
+      //Calculating area of rectangle
+      function area(l, b) {
+        let rect = l * b;
+        console.log(rect);
+      }
+      area(2, 4);
+
+      //Calculating cube
+      function cube(a) {
+        let c = a * a * a;
+        console.log("cube of number is=" + c);
+      }
+      cube(5);
+
+      //Array sum
+      function arraySum(arr) {
+        let sum = 0;
+
+        for (let i = 0; i < arr.length; i++) {
+          sum += arr[i];
+        }
+
+        console.log("Sum of array elements = " + sum);
+      }
+      arraySum([8, 5, 9, 3, 60]);
+
+      //Array MAX
+      function findMax(arr) {
+        let max = arr[0];
+
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] > max) {
+            max = arr[i];
+          }
+        }
+
+        console.log("Maximum element = " + max);
+      }
+      findMax([8, 5, 9, 3, 6, 7]);
+
+      //Array MIN
+      function findMin(arr) {
+        let min = arr[0];
+
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] < min) {
+            min = arr[i];
+          }
+        }
+        console.log("Minimum element = " + min);
+      }
+      findMin([8, 5, 9, 3, 6, 7]);
+
+    </script>
+  </body>
+</html>
