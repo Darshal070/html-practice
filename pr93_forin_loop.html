@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For in Loop</title>
+</head>
+<body>
+    <script>
+        let std={
+            name:"Darshal",
+            age:18,
+            city:"Ahilyangar",
+            mark:85
+        }
+        let count=0
+        for(let key in std){
+            count++
+            console.log(key +":"+ std[key])
+        }
+        console.log(count)
+
+        //Printing number 1-50 which divisible by 5.
+        for(i=1;i<=50;i++){
+            if(i%5==0){
+                console.log("num=",i)
+            }
+        }
+
+        //count number of vovel
+        let arr2=["a","r","e","i","p","o","k","u"]
+        let vovel=0
+        for(let vo of arr2){
+            if(vo=="a" || vo=="e" || vo=="i" || vo=="o" || vo=="u" ){
+                vovel++
+            }
+        }
+        console.log("No. of vovels="+vovel)
+
+        //Finding Power of Number
+        let r=0
+        let x=Number(prompt("Enter a number"))
+        let y=Number(prompt("Enter a power"))
+        for(let i=1;i<=y;i++){
+            r=y*i;
+        }
+        console.log("Power of num=",r)
+    </script>
+</body>
+</html>
