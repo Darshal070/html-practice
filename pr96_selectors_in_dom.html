@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selectors</title>
+  </head>
+  <body>
+    <h1 id="i1">Welcome</h1>
+
+    <div>
+      <h1 id="h1">DOM in Javascript</h1>
+      <p>Getelemnt by tag name</p>
+    </div>
+
+    <div class="c1">
+      <p class="p2">Lorem ipsum dolor sit amet consectetur.</p>
+    </div>
+
+    <script>
+
+      //GetElementbytagname
+      let para = document.getElementsByTagName("p");
+      console.log(para);
+
+      //GetElemntById
+      let head = document.getElementById("h1");
+      console.log(head);
+
+      //GetElementByClassName
+      let div = document.getElementsByClassName("c1");
+      console.log(div);
+
+      //QuerySelector()
+      let p = document.querySelector("p");
+      console.log(p);
+
+      let h1 = document.querySelector("#i1");
+      console.log(h1);
+
+      let p2 = document.querySelector(".p2");
+      console.log(p2);
+
+      //QuerySelectorAll
+      let div2 = document.querySelectorAll("div");
+      console.log(div2);
+
+    </script>
+
+  </body>
+</html>
