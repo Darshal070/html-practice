@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN FORM</title>
+</head>
+<body>
+    <h1>Login Form</h1>
+    <form id="myform">
+    username: <input id="user" type="text" required><br><br>
+    password: <input id="pass" type="password" required><br><br>
+    <input type="submit">
+    <input type="reset">
+    </form>
+
+    <script>
+        //submit
+        let form=document.querySelector("#myform")
+         user.addEventListener("change",()=>{
+            alert("username can changed..")
+        })
+
+        //reset
+        form.addEventListener("reset",()=>{
+            alert("form reset successfully")
+        })
+
+        //change
+        let  user=document.querySelector("#user")
+        let pass=document.querySelector("#pass")
+
+        user.addEventListener("change",()=>{
+            alert("username can changed..")
+        })
+       
+        pass.addEventListener("change",()=>{
+            alert("password can changed..")
+        })
+
+        //focus
+        // user.addEventListener("focus",()=>{
+          // usrer.style.
+        //})
+    </script>
+</body>
+</html>
