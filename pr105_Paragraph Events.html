@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paragraph Events</title>
+</head>
+<body>
+
+<script>
+   
+    let para = document.createElement("p");
+
+    //Add text and apply styles
+    para.innerText = "Welcome to JavaScript";
+
+    para.style.width = "200px";
+    para.style.height = "200px";
+    para.style.backgroundColor = "lightblue";
+    para.style.textAlign = "center";
+    para.style.lineHeight = "200px";
+    para.style.fontWeight = "bold";
+
+    //Transition Property
+    para.style.transition = "all 0.5s ease";
+
+
+    //Add paragraph to webpage
+    document.body.appendChild(para);
+
+    //Mouse over Circle 
+    para.onmouseover = function() {
+        para.style.borderRadius = "50%";
+        para.style.backgroundColor = "orange";
+    };
+
+    //Mouse out Square 
+    para.onmouseout = function() {
+        para.style.borderRadius = "0";
+        para.style.backgroundColor = "lightblue";
+    };
+</script>
+
+</body>
+</html>
