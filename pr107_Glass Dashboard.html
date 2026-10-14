@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glass Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:linear-gradient(135deg,#4facfe,#00f2fe,#6a11cb);
+    background-size:400% 400%;
+    animation:bg 10s infinite alternate;
+}
+
+@keyframes bg{
+    0%{background-position:left;}
+    100%{background-position:right;}
+}
+
+.card{
+    width:360px;
+    padding:30px;
+    border-radius:25px;
+
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.3);
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+
+    color:white;
+    text-align:center;
+
+    transition:.3s;
+    transform-style:preserve-3d;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+.clock{
+    font-size:40px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+button{
+    margin:10px;
+    padding:12px 20px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    color:white;
+    background:rgba(255,255,255,.2);
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+    background:rgba(255,255,255,.35);
+}
+
+.message{
+    margin-top:20px;
+    font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <h1>✨ Glass Dashboard</h1>
+
+    <div class="clock" id="clock"></div>
+
+    <button id="themeBtn">Change Theme</button>
+    <button id="helloBtn">Click Me</button>
+
+    <div class="message" id="msg">
+        Welcome!
+    </div>
+</div>
+
+<script>
+
+function updateClock(){
+    let now=new Date();
+    document.getElementById("clock").innerHTML=
+    now.toLocaleTimeString();
+}
+setInterval(updateClock,1000);
+updateClock();
+
+const colors=[
+"linear-gradient(135deg,#4facfe,#00f2fe,#6a11cb)",
+"linear-gradient(135deg,#ff512f,#dd2476)",
+"linear-gradient(135deg,#11998e,#38ef7d)",
+"linear-gradient(135deg,#8E2DE2,#4A00E0)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
+
+let index=0;
+
+document.getElementById("themeBtn").onclick=function(){
+    index=(index+1)%colors.length;
+    document.body.style.background=colors[index];
+};
+
+document.getElementById("helloBtn").onclick=function(){
+    document.getElementById("msg").innerHTML=
+    "🔥 JavaScript Event Triggered!";
+};
+
+const card=document.getElementById("card");
+
+document.addEventListener("mousemove",function(e){
+
+let x=(window.innerWidth/2-e.clientX)/25;
+let y=(window.innerHeight/2-e.clientY)/25;
+
+card.style.transform=
+`rotateY(${x}deg) rotateX(${-y}deg)`;
+
+});
+
+document.addEventListener("mouseleave",function(){
+card.style.transform="rotateX(0) rotateY(0)";
+});
+
+</script>
+
+</body>
+</html>
