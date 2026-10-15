@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Piano</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #111, #333);
+      }
+
+      .piano {
+        display: flex;
+        gap: 8px;
+      }
+
+      .key {
+        width: 80px;
+        height: 320px;
+        background: white;
+        border-radius: 8px;
+        border: 2px solid black;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: 20px;
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.1s;
+        user-select: none;
+      }
+
+      .key:active,
+      .key.active {
+        transform: translateY(6px);
+        background: #ffe76a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="piano">
+      <div class="key" data-key="a">A</div>
+      <div class="key" data-key="s">S</div>
+      <div class="key" data-key="d">D</div>
+      <div class="key" data-key="f">F</div>
+      <div class="key" data-key="g">G</div>
+      <div class="key" data-key="h">H</div>
+      <div class="key" data-key="j">J</div>
+      <div class="key" data-key="k">K</div>
+    </div>
+
+    <script>
+      const notes = {
+        a: 261.63, 
+        s: 293.66, 
+        d: 329.63, 
+        f: 349.23, 
+        g: 392.0, 
+        h: 440.0, 
+        j: 493.88, 
+        k: 523.25,
+      };
+
+      function play(freq) {
+        const audio = new (window.AudioContext || window.webkitAudioContext)();
+
+        const osc = audio.createOscillator();
+        const gain = audio.createGain();
+
+        osc.frequency.value = freq;
+        osc.type = "sine";
+
+        osc.connect(gain);
+        gain.connect(audio.destination);
+
+        gain.gain.setValueAtTime(0.3, audio.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 1);
+
+        osc.start();
+        osc.stop(audio.currentTime + 1);
+      }
+
+      function animate(key) {
+        const btn = document.querySelector(`[data-key="${key}"]`);
+
+        if (!btn) return;
+
+        btn.classList.add("active");
+
+        setTimeout(() => {
+          btn.classList.remove("active");
+        }, 100);
+      }
+
+      document.addEventListener("keydown", (e) => {
+        const key = e.key.toLowerCase();
+
+        if (notes[key]) {
+          play(notes[key]);
+          animate(key);
+        }
+      });
+
+      document.querySelectorAll(".key").forEach((btn) => {
+        btn.onclick = () => {
+          const key = btn.dataset.key;
+          play(notes[key]);
+          animate(key);
+        };
+      });
+    </script>
+  </body>
+</html>
