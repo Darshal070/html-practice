@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Stadium</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background: #111;
+        overflow: hidden;
+        color: #fff;
+      }
+
+      .scoreboard {
+        width: 100%;
+        height: 90px;
+        background: #1b1b1b;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: 4px solid #00ff66;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      .scoreboard h1 {
+        font-size: 40px;
+        color: #00ff66;
+      }
+
+      .scoreboard h2,
+      .scoreboard h3 {
+        margin-bottom: 5px;
+      }
+
+      .scoreboard p {
+        font-size: 18px;
+      }
+
+      .stadium {
+        width: 100%;
+        height: calc(100vh - 200px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .crowd {
+        position: absolute;
+        background: #444;
+      }
+
+      .top {
+        width: 100%;
+        height: 70px;
+        top: 0;
+      }
+
+      .bottom {
+        width: 100%;
+        height: 70px;
+        bottom: 0;
+      }
+
+      .left {
+        width: 70px;
+        height: 100%;
+        left: 0;
+      }
+
+      .right {
+        width: 70px;
+        height: 100%;
+        right: 0;
+      }
+
+      .ground {
+        width: 85%;
+        height: 85%;
+        background: #228b22;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 10px solid #0f5e19;
+        overflow: hidden;
+      }
+
+      .pitch {
+        width: 90px;
+        height: 380px;
+        background: #d9b97e;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+      }
+
+      .crease {
+        width: 100%;
+        height: 4px;
+        background: #fff;
+        position: absolute;
+      }
+
+      .crease.top {
+        top: 40px;
+      }
+
+      .crease.bottom {
+        bottom: 40px;
+      }
+
+      .stumps {
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .topStumps {
+        top: 15px;
+      }
+
+      .bottomStumps {
+        bottom: 15px;
+      }
+
+      .stumps span {
+        width: 5px;
+        height: 20px;
+        background: #fff;
+      }
+
+      .player {
+        position: absolute;
+        width: 26px;
+        height: 50px;
+      }
+
+      .head {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #ffd39b;
+        margin: auto;
+      }
+
+      .body {
+        width: 14px;
+        height: 28px;
+        background: #0066ff;
+        margin: auto;
+        border-radius: 3px;
+      }
+
+      .bat {
+        width: 5px;
+        height: 30px;
+        background: #c28a45;
+        position: absolute;
+        right: -6px;
+        bottom: 2px;
+        transform: rotate(25deg);
+      }
+
+      .bowlerPlayer {
+        left: 50%;
+        top: -35px;
+        transform: translateX(-50%);
+      }
+
+      .batsmanPlayer {
+        left: 50%;
+        bottom: -25px;
+        transform: translateX(-50%);
+      }
+
+      .keeper {
+        left: 50%;
+        bottom: -80px;
+        transform: translateX(-50%);
+      }
+
+      .keeper .body {
+        background: #ff9900;
+      }
+
+      .f1 {
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .f2 {
+        top: 120px;
+        left: 180px;
+      }
+
+      .f3 {
+        top: 120px;
+        right: 180px;
+      }
+
+      .f4 {
+        top: 240px;
+        left: 90px;
+      }
+
+      .f5 {
+        top: 240px;
+        right: 90px;
+      }
+
+      .f6 {
+        bottom: 160px;
+        left: 150px;
+      }
+
+      .f7 {
+        bottom: 160px;
+        right: 150px;
+      }
+
+      .f8 {
+        bottom: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      #ball {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: red;
+        position: absolute;
+        left: 50%;
+        top: 35px;
+        transform: translateX(-50%);
+        box-shadow: 0 0 10px red;
+      }
+
+      .controls {
+        width: 100%;
+        height: 60px;
+        background: #151515;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .controls button {
+        padding: 12px 30px;
+        border: none;
+        border-radius: 8px;
+        background: #00aa44;
+        color: #fff;
+        cursor: pointer;
+        font-size: 18px;
+        transition: 0.3s;
+      }
+
+      .controls button:hover {
+        background: #00dd66;
+        transform: scale(1.05);
+      }
+
+      .commentary {
+        width: 100%;
+        height: 110px;
+        background: #1c1c1c;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-top: 3px solid #00ff66;
+      }
+
+      .commentary h2 {
+        margin-bottom: 10px;
+        color: #00ff66;
+      }
+
+      .commentary p {
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .team,
+      .score,
+      .batsman,
+      .bowler {
+        text-align: center;
+      }
+
+      .team h2 {
+        color: #00ff66;
+      }
+
+      .score {
+        min-width: 170px;
+      }
+
+      #runs {
+        letter-spacing: 2px;
+      }
+
+      #overs {
+        color: #00ff66;
+        font-weight: bold;
+      }
+
+      .player {
+        transition: 0.4s;
+      }
+
+      .player:hover {
+        transform: scale(1.15);
+      }
+
+      .f1 .body,
+      .f2 .body,
+      .f3 .body,
+      .f4 .body,
+      .f5 .body,
+      .f6 .body,
+      .f7 .body,
+      .f8 .body {
+        background: #0055ff;
+      }
+
+      #ball {
+        transition: 1s linear;
+      }
+
+      .ground::before {
+        content: "";
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .ground::after {
+        content: "";
+        position: absolute;
+        width: 620px;
+        height: 620px;
+        border: 3px solid rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .crowd {
+        background: repeating-linear-gradient(
+          90deg,
+          #555 0px,
+          #555 8px,
+          #777 8px,
+          #777 16px,
+          #444 16px,
+          #444 24px
+        );
+        animation: crowdMove 0.4s infinite alternate;
+      }
+
+      @keyframes crowdMove {
+        from {
+          filter: brightness(1);
+        }
+
+        to {
+          filter: brightness(1.3);
+        }
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-6px);
+        }
+
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .bowlerPlayer,
+      .batsmanPlayer,
+      .keeper {
+        animation: bounce 1s infinite;
+      }
+
+      @keyframes batSwing {
+        0% {
+          transform: rotate(25deg);
+        }
+
+        50% {
+          transform: rotate(-30deg);
+        }
+
+        100% {
+          transform: rotate(25deg);
+        }
+      }
+
+      .batsmanPlayer .bat {
+        transform-origin: bottom;
+        animation: batSwing 1.2s infinite;
+      }
+
+      .controls button:active {
+        transform: scale(0.95);
+      }
+
+      .scoreboard,
+      .controls,
+      .commentary {
+        box-shadow: 0 0 15px rgba(0, 255, 120, 0.15);
+      }
+
+      @media (max-width: 1000px) {
+        .ground {
+          width: 95%;
+          height: 82%;
+        }
+
+        .pitch {
+          height: 320px;
+        }
+
+        .scoreboard h1 {
+          font-size: 30px;
+        }
+
+        .scoreboard p {
+          font-size: 15px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .scoreboard {
+          flex-wrap: wrap;
+          height: auto;
+          padding: 15px;
+          gap: 15px;
+        }
+
+        .controls {
+          flex-direction: column;
+          height: auto;
+          padding: 15px;
+        }
+
+        .controls button {
+          width: 220px;
+        }
+
+        .commentary {
+          height: 130px;
+          padding: 10px;
+        }
+
+        .commentary p {
+          font-size: 16px;
+        }
+
+        .pitch {
+          width: 70px;
+          height: 260px;
+        }
+
+        .player {
+          transform: scale(0.8);
+        }
+      }
+
+      @media (max-width: 500px) {
+        .ground {
+          width: 98%;
+          height: 80%;
+        }
+
+        .f2,
+        .f3,
+        .f4,
+        .f5,
+        .f6,
+        .f7 {
+          display: none;
+        }
+
+        .scoreboard h1 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+
+  <script>
+    const ball = document.getElementById("ball");
+    const bowlBtn = document.getElementById("bowlBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    const runsText = document.getElementById("runs");
+    const oversText = document.getElementById("overs");
+    const comment = document.getElementById("comment");
+
+    let runs = 0;
+    let wickets = 0;
+    let balls = 0;
+    const maxOvers = 5;
+
+    const results = [0, 1, 2, 3, 4, 6, "W"];
+
+    const comments = {
+      0: ["Dot ball!", "Good bowling.", "No run."],
+      1: ["Quick single!", "Easy one.", "One run."],
+      2: ["Good running!", "Two runs.", "Excellent effort."],
+      3: ["Three runs!", "Great placement.", "Brilliant running."],
+      4: ["FOUR!", "Beautiful cover drive!", "Boundary!"],
+      6: ["SIX!!", "Into the crowd!", "Massive hit!"],
+      W: ["OUT!", "Bowled!", "Caught!"],
+    };
+
+    updateScore();
+
+    bowlBtn.addEventListener("click", bowlBall);
+    resetBtn.addEventListener("click", resetMatch);
+
+    function bowlBall() {
+      if (isMatchOver()) {
+        comment.innerHTML = "Match Over! Press Restart.";
+        return;
+      }
+
+      bowlBtn.disabled = true;
+
+      ball.style.transition = "none";
+      ball.style.top = "35px";
+      ball.style.left = "50%";
+
+      setTimeout(() => {
+        ball.style.transition = "0.8s linear";
+        ball.style.top = "330px";
+      }, 50);
+
+      setTimeout(() => {
+        playDelivery();
+
+        ball.style.transition = "none";
+        ball.style.top = "35px";
+        ball.style.left = "50%";
+
+        bowlBtn.disabled = false;
+      }, 900);
+    }
+
+    function playDelivery() {
+      const result = results[Math.floor(Math.random() * results.length)];
+
+      if (result === "W") {
+        wickets++;
+
+        comment.innerHTML =
+          comments.W[Math.floor(Math.random() * comments.W.length)];
+      } else {
+        runs += result;
+
+        comment.innerHTML =
+          comments[result][Math.floor(Math.random() * comments[result].length)];
+      }
+
+      balls++;
+
+      updateScore();
+
+      if (isMatchOver()) {
+        bowlBtn.disabled = true;
+
+        setTimeout(() => {
+          comment.innerHTML +=
+            "<br><br>🏁 Innings Finished! Final Score : " +
+            runs +
+            "/" +
+            wickets;
+        }, 500);
+      }
+    }
+
+    function updateScore() {
+      runsText.innerHTML = runs + "/" + wickets;
+
+      let over = Math.floor(balls / 6);
+      let ballNo = balls % 6;
+
+      oversText.innerHTML = over + "." + ballNo;
+    }
+
+    function isMatchOver() {
+      return balls >= maxOvers * 6 || wickets >= 10;
+    }
+
+    function resetMatch() {
+      runs = 0;
+      wickets = 0;
+      balls = 0;
+
+      updateScore();
+
+      bowlBtn.disabled = false;
+
+      comment.innerHTML = 'Click "Bowl Ball" to start the match.';
+    }
+  </script>
+
+  <body>
+    <div class="scoreboard">
+      <div class="team">
+        <h2>INDIA</h2>
+      </div>
+
+      <div class="score">
+        <h1 id="runs">0/0</h1>
+        <p>
+          Overs :
+          <span id="overs">0.0</span>
+        </p>
+      </div>
+
+      <div class="batsman">
+        <h3>Batsman</h3>
+        <p id="batsmanName">M.S Dhoni</p>
+      </div>
+
+      <div class="bowler">
+        <h3>Bowler</h3>
+        <p id="bowlerName">Starc</p>
+      </div>
+    </div>
+
+    <div class="stadium">
+      <div class="crowd top"></div>
+      <div class="crowd left"></div>
+      <div class="crowd right"></div>
+      <div class="crowd bottom"></div>
+
+      <div class="ground">
+        <div class="pitch">
+          <div class="crease top"></div>
+          <div class="crease bottom"></div>
+
+          <div class="stumps topStumps">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="stumps bottomStumps">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div id="ball"></div>
+
+          <div class="player bowlerPlayer">
+            <div class="head"></div>
+            <div class="body"></div>
+          </div>
+
+          <div class="player batsmanPlayer">
+            <div class="head"></div>
+            <div class="body"></div>
+            <div class="bat"></div>
+          </div>
+
+          <div class="player keeper">
+            <div class="head"></div>
+            <div class="body"></div>
+          </div>
+        </div>
+
+        <div class="player f1">
+          <div class="head"></div>
+          <div class="body"></div>
+        </div>
+
+        <div class="player f2">
+          <div class="head"></div>
+          <div class="body"></div>
+        </div>
+
+        <div class="player f3">
+          <div class="head"></div>
+          <div class="body"></div>
+        </div>
+
+        <div class="player f4">
+          <div class="head"></div>
+          <div class="body"></div>
+        </div>
+
+        <div class="player f5">
+          <div class="head"></div>
+          <div class="body"></div>
+        </div>
+
+        <div class="player f6">
+          <div class="head"></div>
+          <div class="body"></div>
+        </div>
+
+        <div class="player f7">
+          <div class="head"></div>
+          <div class="body"></div>
+        </div>
+
+        <div class="player f8">
+          <div class="head"></div>
+          <div class="body"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="bowlBtn">Bowl Ball</button>
+
+      <button id="resetBtn">Restart Match</button>
+    </div>
+
+    <div class="commentary">
+      <h2>Live Commentary</h2>
+
+      <p id="comment">Click "Bowl Ball" to start the match.</p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
