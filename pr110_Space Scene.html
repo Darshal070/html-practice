@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Scene</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        overflow: hidden;
+        background: #000;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .space {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(120, 0, 255, 0.35),
+            transparent 35%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(0, 180, 255, 0.3),
+            transparent 35%
+          ),
+          radial-gradient(circle at center, #050510, #000);
+      }
+
+      #stars {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: #fff;
+        border-radius: 50%;
+        animation: twinkle 2s infinite alternate;
+      }
+
+      @keyframes twinkle {
+        from {
+          opacity: 0.2;
+          transform: scale(0.6);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1.5);
+        }
+      }
+
+      .sun {
+        position: absolute;
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #fff9b0, #ffd000, #ff8c00);
+        top: 50%;
+        left: 12%;
+        transform: translateY(-50%);
+        box-shadow:
+          0 0 30px #ffb300,
+          0 0 60px #ff9900,
+          0 0 100px #ff7700,
+          0 0 150px #ff5500;
+        animation: sunGlow 3s infinite alternate;
+      }
+
+      @keyframes sunGlow {
+        from {
+          filter: brightness(1);
+        }
+        to {
+          filter: brightness(1.3);
+        }
+      }
+
+      .earth-orbit {
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        border: 1px dashed rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: orbit 18s linear infinite;
+      }
+
+      @keyframes orbit {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      .earth {
+        position: absolute;
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        right: -45px;
+        top: 50%;
+        margin-top: -47px;
+        overflow: hidden;
+        background: radial-gradient(circle at 30% 30%, #58d8ff, #0a4fff);
+        box-shadow:
+          0 0 20px #4dcfff,
+          0 0 40px #0077ff;
+        animation: earthSpin 8s linear infinite;
+      }
+
+      @keyframes earthSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .earth::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background:
+          radial-gradient(
+            circle at 40% 25%,
+            transparent 15%,
+            #28a745 16%,
+            #28a745 24%,
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 65% 60%,
+            transparent 12%,
+            #2ecc71 13%,
+            #2ecc71 20%,
+            transparent 21%
+          ),
+          radial-gradient(
+            circle at 25% 70%,
+            transparent 10%,
+            #3cb043 11%,
+            #3cb043 18%,
+            transparent 19%
+          );
+      }
+
+      .moon-orbit {
+        position: absolute;
+        width: 170px;
+        height: 170px;
+        border: 1px dashed rgba(255, 255, 255, 0.12);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: moonOrbit 5s linear infinite;
+      }
+
+      @keyframes moonOrbit {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      .moon {
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #d8d8d8;
+        right: -14px;
+        top: 50%;
+        margin-top: -14px;
+        box-shadow:
+          0 0 10px #ffffff,
+          0 0 20px #cccccc;
+      }
+
+      .rocket {
+        position: absolute;
+        font-size: 55px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition:
+          left 0.15s linear,
+          top 0.15s linear,
+          transform 0.15s linear;
+        z-index: 100;
+        user-select: none;
+      }
+
+      .satellite {
+        position: absolute;
+        font-size: 38px;
+        top: 18%;
+        left: -100px;
+        animation: satelliteMove 18s linear infinite;
+        z-index: 50;
+      }
+
+      @keyframes satelliteMove {
+        from {
+          left: -120px;
+          transform: rotate(0deg);
+        }
+        to {
+          left: 110%;
+          transform: rotate(360deg);
+        }
+      }
+
+      .meteor {
+        position: absolute;
+        width: 4px;
+        height: 90px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+        transform: rotate(45deg);
+        animation: meteorFall linear forwards;
+      }
+
+      @keyframes meteorFall {
+        from {
+          opacity: 1;
+          transform: translate(0, 0) rotate(45deg);
+        }
+        to {
+          opacity: 0;
+          transform: translate(-600px, 600px) rotate(45deg);
+        }
+      }
+
+      .shooting-star {
+        position: absolute;
+        width: 3px;
+        height: 130px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+        transform: rotate(45deg);
+        animation: shoot 2s linear forwards;
+      }
+
+      @keyframes shoot {
+        from {
+          opacity: 1;
+          transform: translate(0, 0) rotate(45deg);
+        }
+        to {
+          opacity: 0;
+          transform: translate(-900px, 900px) rotate(45deg);
+        }
+      }
+
+      .nebula {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.25;
+        animation: nebulaMove 15s ease-in-out infinite alternate;
+      }
+
+      .nebula.one {
+        background: #8a2be2;
+        top: -120px;
+        left: -120px;
+      }
+
+      .nebula.two {
+        background: #00bfff;
+        bottom: -180px;
+        right: -150px;
+      }
+
+      @keyframes nebulaMove {
+        from {
+          transform: translate(0, 0) scale(1);
+        }
+        to {
+          transform: translate(80px, -40px) scale(1.2);
+        }
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <script>
+    const stars = document.getElementById("stars");
+    const rocket = document.querySelector(".rocket");
+    const space = document.querySelector(".space");
+
+    for (let i = 0; i < 300; i++) {
+      const star = document.createElement("div");
+
+      star.className = "star";
+
+      star.style.left = Math.random() * 100 + "%";
+
+      star.style.top = Math.random() * 100 + "%";
+
+      const size = Math.random() * 3 + 1;
+
+      star.style.width = size + "px";
+
+      star.style.height = size + "px";
+
+      star.style.animationDuration = Math.random() * 3 + 1 + "s";
+
+      star.style.animationDelay = Math.random() * 5 + "s";
+
+      stars.appendChild(star);
+    }
+
+    const nebula1 = document.createElement("div");
+    nebula1.className = "nebula one";
+
+    const nebula2 = document.createElement("div");
+    nebula2.className = "nebula two";
+
+    space.appendChild(nebula1);
+    space.appendChild(nebula2);
+
+    document.addEventListener("mousemove", function (e) {
+      rocket.style.left = e.clientX + "px";
+
+      rocket.style.top = e.clientY + "px";
+
+      rocket.style.transform = "translate(-50%,-50%) rotate(45deg)";
+    });
+
+    function createMeteor() {
+      const meteor = document.createElement("div");
+
+      meteor.className = "meteor";
+
+      meteor.style.left = Math.random() * window.innerWidth + "px";
+
+      meteor.style.top = "-120px";
+
+      meteor.style.animationDuration = Math.random() * 2 + 1 + "s";
+
+      space.appendChild(meteor);
+
+      setTimeout(function () {
+        meteor.remove();
+      }, 3000);
+    }
+
+    setInterval(createMeteor, 1200);
+
+    function shootingStar() {
+      const shoot = document.createElement("div");
+
+      shoot.className = "shooting-star";
+
+      shoot.style.left = Math.random() * window.innerWidth + "px";
+
+      shoot.style.top = Math.random() * 250 + "px";
+
+      space.appendChild(shoot);
+
+      setTimeout(function () {
+        shoot.remove();
+      }, 2000);
+    }
+
+    setInterval(shootingStar, 4000);
+
+    function sparkle() {
+      const allStars = document.querySelectorAll(".star");
+
+      allStars.forEach(function (star) {
+        star.style.opacity = Math.random();
+
+        star.style.transform = `scale(${Math.random() * 2 + 0.5})`;
+      });
+    }
+
+    setInterval(sparkle, 600);
+
+    window.addEventListener("resize", function () {
+      rocket.style.left = window.innerWidth / 2 + "px";
+
+      rocket.style.top = window.innerHeight / 2 + "px";
+    });
+
+    rocket.style.left = window.innerWidth / 2 + "px";
+    rocket.style.top = window.innerHeight / 2 + "px";
+  </script>
+
+  <body>
+    <div class="space">
+      <div id="stars"></div>
+
+      <div class="sun"></div>
+
+      <div class="earth-orbit">
+        <div class="earth">
+          <div class="moon-orbit">
+            <div class="moon"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rocket">🚀</div>
+
+      <div class="satellite">🛰️</div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
